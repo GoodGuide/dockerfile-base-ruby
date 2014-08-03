@@ -1,4 +1,4 @@
-FROM goodguide/base
+FROM goodguide/base-oracle-java:7
 
 MAINTAINER GoodGuide "docker@goodguide.com"
 
@@ -18,7 +18,7 @@ RUN git clone https://github.com/sstephenson/ruby-build.git /opt/ruby-build
 
 ENV PATH /opt/ruby-build/bin:$PATH
 ENV RUBY_PREFIX /usr/local
-ENV RUBY_VERSION 2.1.2
+ENV RUBY_VERSION jruby-1.7.13
 
 # Install ruby via ruby-build
 RUN ruby-build -v $RUBY_VERSION $RUBY_PREFIX
@@ -26,6 +26,9 @@ RUN ruby-build -v $RUBY_VERSION $RUBY_PREFIX
 # update rubygems and install bundler
 RUN gem update --system
 RUN gem install bundler
+
+# Set up JRuby options in the .jrubyrc
+RUN jruby --properties | sed "/compat.version/ c\compat.version=2.0" > /root/.jrubyrc
 
 # for dependant images, again update rubygems and bundler upon building
 # off this image to ensure everything's up-to-date
