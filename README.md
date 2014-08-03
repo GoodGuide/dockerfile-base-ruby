@@ -5,4 +5,4 @@ This is a Docker base image meant to provide a solid base from which to build, w
 Each ruby lives in its own branch (see `REPO.md` for details), so see the
 branches for available rubies.
 
-This repo is tied to the [goodguide/base-ruby](//registry.hub.docker.com/u/goodguide/base-ruby) automated build on the Docker Hub. The master branch is **not** built.
+This repo is tied to the [goodguide/base-ruby](//registry.hub.docker.com/u/goodguide/base-ruby) automated build on the Docker Hub. The branch names in the git repo match the tags on the docker repo and they correspond with the exact name that [ruby-build](https://github.com/sstephenson/ruby-build/tree/master/share/ruby-build) uses.
