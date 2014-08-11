@@ -18,7 +18,7 @@ RUN git clone https://github.com/sstephenson/ruby-build.git /opt/ruby-build
 
 ENV PATH /opt/ruby-build/bin:$PATH
 ENV RUBY_PREFIX /usr/local
-ENV RUBY_VERSION jruby-1.7.13
+ENV RUBY_VERSION jruby-1.7.12
 
 # Install ruby via ruby-build
 RUN ruby-build -v $RUBY_VERSION $RUBY_PREFIX
