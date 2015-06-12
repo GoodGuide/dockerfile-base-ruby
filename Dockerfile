@@ -4,6 +4,7 @@ MAINTAINER GoodGuide "docker@goodguide.com"
 
 RUN aptitude install --assume-yes \
       autoconf \
+      byacc \
       libreadline-dev \
       libssl-dev \
       libxml2-dev \
