@@ -7,6 +7,7 @@ RUN aptitude install --assume-yes \
       libssl-dev \
       libxml2-dev \
       libxslt-dev \
+      subversion \
       zlib1g-dev \
  && aptitude clean
 
