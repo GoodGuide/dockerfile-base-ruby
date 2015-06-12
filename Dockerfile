@@ -18,7 +18,7 @@ RUN git clone https://github.com/sstephenson/ruby-build.git /opt/ruby-build
 
 ENV PATH /opt/ruby-build/bin:$PATH
 ENV RUBY_PREFIX /usr/local
-ENV RUBY_VERSION 1.9.3-p547
+ENV RUBY_VERSION 1.8.7-p375
 
 # Install ruby via ruby-build
 RUN ruby-build -v $RUBY_VERSION $RUBY_PREFIX
