@@ -1,0 +1,6 @@
+build_package_tcmalloc_patch() {
+  patch source/distro/google-perftools-1.7/src/tcmalloc.cc /opt/ruby-build/share/ruby-build/tcmalloc.patch
+}
+
+require_gcc
+install_package "ruby-enterprise-1.8.7-2012.02" "http://rubyenterpriseedition.googlecode.com/files/ruby-enterprise-1.8.7-2012.02.tar.gz" tcmalloc_patch ree_installer
