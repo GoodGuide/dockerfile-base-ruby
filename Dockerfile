@@ -26,7 +26,7 @@ ENV RUBY_VERSION 1.9.3-p327-falcon
 # Performance tuning for Ruby:
 ENV RUBY_GC_MALLOC_LIMIT=60000000
 ENV RUBY_FREE_MIN=200000
-ENV CFLAGS="-march=native -O3 -pipe -fomit-frame-pointer -fno-tree-dce -fno-optimize-sibling-calls"
+# ENV CFLAGS="-march=native -O3 -pipe -fomit-frame-pointer -fno-tree-dce -fno-optimize-sibling-calls"
 
 # Install ruby via ruby-build
 RUN ruby-build -v $RUBY_VERSION $RUBY_PREFIX
