@@ -17,7 +17,7 @@ RUN apt-get update \
       subversion \
       zlib1g-dev
 
-ENV RUBY_VERSION=jruby-1.7.13 RUBY_PREFIX=/usr/local
+ENV RUBY_VERSION=jruby-1.7.22 RUBY_PREFIX=/usr/local
 
 # Disable default RDoc/ri generation when installing gems
 RUN set -x \
