@@ -5,7 +5,6 @@ ENV RUBY_VERSION='jruby-1.7.24' \
     RUBY_BUILD_RELEASE='master'
 
 RUN set -x \
-
  && apk --update add \
      bash \
      ca-certificates \
@@ -36,6 +35,7 @@ RUN set -x \
  # Set up JRuby options in the .jrubyrc
  && jruby --properties | sed "/compat.version/ c\compat.version=2.0" > /root/.jrubyrc \
 
+ && cd / \
  && rm -rf \
       /tmp/* \
       /var/cache/apk/* \
