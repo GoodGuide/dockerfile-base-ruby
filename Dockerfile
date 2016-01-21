@@ -1,10 +1,9 @@
-FROM quay.io/goodguide/oracle-java:alpine-3.2-java-8.66.17-0
+FROM quay.io/goodguide/oracle-java:alpine-3.2-java-8.72.15-0
 
-ENV RUBY_VERSION='jruby-1.7.22' \
+ENV RUBY_VERSION='jruby-1.7.24' \
     RUBY_PREFIX='/usr/local' \
-    RUBY_BUILD_RELEASE='v20151028'
+    RUBY_BUILD_RELEASE='master'
 
-# Disable default RDoc/ri generation when installing gems
 RUN set -x \
 
  && apk --update add \
