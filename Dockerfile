@@ -1,4 +1,4 @@
-FROM quay.io/goodguide/base:ubuntu-15.10-1
+FROM quay.io/goodguide/base:ubuntu-15.10-2
 
 RUN apt-get update \
  && apt-get install \
