@@ -17,7 +17,7 @@ RUN apt-get update \
       subversion \
       zlib1g-dev
 
-ENV RUBY_VERSION=2.1.5 RUBY_PREFIX=/usr/local
+ENV RUBY_VERSION=2.2.5 RUBY_PREFIX=/usr/local
 
 # Disable default RDoc/ri generation when installing gems
 RUN set -x \
@@ -37,3 +37,4 @@ RUN set -x \
 # for dependant images, again update rubygems and bundler upon building
 # off this image to ensure everything's up-to-date
 ONBUILD RUN gem update --system
+ONBUILD RUN gem install bundler
