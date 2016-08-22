@@ -18,7 +18,7 @@ RUN apt-get update \
       zlib1g-dev
 
 ARG RUBY_VERSION
-ENV RUBY_PREFIX=/usr/local
+ENV RUBY_VERSION="$RUBY_VERSION" RUBY_PREFIX=/usr/local
 
 # Disable default RDoc/ri generation when installing gems
 RUN set -x \
@@ -28,7 +28,7 @@ RUN set -x \
  && git clone https://github.com/sstephenson/ruby-build.git /tmp/ruby-build \
 
 # Install ruby via ruby-build
- && /tmp/ruby-build/bin/ruby-build -v $RUBY_VERSION $RUBY_PREFIX \
+ && /tmp/ruby-build/bin/ruby-build -v "$RUBY_VERSION" "$RUBY_PREFIX" \
 
  && rm -rf /tmp/ruby-build \
 
