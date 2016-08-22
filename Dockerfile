@@ -17,7 +17,8 @@ RUN apt-get update \
       subversion \
       zlib1g-dev
 
-ENV RUBY_VERSION=2.2.5 RUBY_PREFIX=/usr/local
+ARG RUBY_VERSION
+ENV RUBY_VERSION="$RUBY_VERSION" RUBY_PREFIX=/usr/local
 
 # Disable default RDoc/ri generation when installing gems
 RUN set -x \
@@ -27,7 +28,7 @@ RUN set -x \
  && git clone https://github.com/sstephenson/ruby-build.git /tmp/ruby-build \
 
 # Install ruby via ruby-build
- && /tmp/ruby-build/bin/ruby-build -v $RUBY_VERSION $RUBY_PREFIX \
+ && /tmp/ruby-build/bin/ruby-build -v "$RUBY_VERSION" "$RUBY_PREFIX" \
 
  && rm -rf /tmp/ruby-build \
 

@@ -1,0 +1,20 @@
+---
+sudo: required
+
+services:
+  - docker
+
+# set language to anythoing other than Ruby so it doesn't use RVM which winds up overriding the RUBY_VERSION variable
+language: c
+
+env:
+  - RUBY_VERSION=2.2.5
+  - RUBY_VERSION=2.3.1
+
+install: true
+
+before_script:
+  - docker info
+  - docker login -u="${DOCKER_USERNAME}" -p="${DOCKER_PASSWORD}" quay.io
+
+script: ./build_and_push
