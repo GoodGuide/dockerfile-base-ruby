@@ -1,6 +1,8 @@
 FROM quay.io/goodguide/oracle-java:alpine-3.2-java-8.72.15-0
 
-ENV RUBY_VERSION='jruby-1.7.24' \
+ARG RUBY_VERSION
+
+ENV RUBY_VERSION="$RUBY_VERSION" \
     RUBY_PREFIX='/usr/local' \
     RUBY_BUILD_RELEASE='master'
 

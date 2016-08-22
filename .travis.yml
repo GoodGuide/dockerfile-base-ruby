@@ -1,0 +1,22 @@
+---
+sudo: required
+
+services:
+  - docker
+
+# set language to anythoing other than Ruby so it doesn't use RVM which winds up overriding the RUBY_VERSION variable
+language: c
+
+env:
+  - RUBY_VERSION=jruby-1.7.22 DOCKERFILE=Dockerfile.jruby TAG_BASE=alpine-3.2
+  - RUBY_VERSION=jruby-1.7.24 DOCKERFILE=Dockerfile.jruby TAG_BASE=alpine-3.2
+  - RUBY_VERSION=jruby-1.7.25 DOCKERFILE=Dockerfile.jruby TAG_BASE=alpine-3.2
+  - RUBY_VERSION=jruby-9.1.2.0 DOCKERFILE=Dockerfile.jruby TAG_BASE=alpine-3.2
+
+install: true
+
+before_script:
+  - docker info
+  - docker login -u="${DOCKER_USERNAME}" -p="${DOCKER_PASSWORD}" quay.io
+
+script: PUSH=1 ./build_and_push
