@@ -1,14 +1,14 @@
 #!/bin/bash
 
-set -euo pipefail
+set -x -euo pipefail
 
 tag_ruby_id="${RUBY_VERSION}"
 if [[ $tag_ruby_id =~ ^[0-9] ]]; then
    tag_ruby_id="mri-${tag_ruby_id}"
 fi
 
-tag="quay.io/goodguide/ruby:${DIRECTORY}-${tag_ruby_id}-${TRAVIS_BUILD_NUMBER}"
+tag="quay.io/goodguide/ruby:${BASE}-${tag_ruby_id}-${TRAVIS_BUILD_NUMBER}"
 
-docker build --file "${DOCKERFILE:-Dockerfile}" --tag "${tag}" --build-arg RUBY_VERSION="${RUBY_VERSION}" ${DIRECTORY}
+docker build --file "${BASE}/${DOCKERFILE:-Dockerfile}" --tag "${tag}" --build-arg RUBY_VERSION="${RUBY_VERSION}" ./${BASE}/
 
 [[ ${PUSH:-} ]] && docker push "${tag}"
