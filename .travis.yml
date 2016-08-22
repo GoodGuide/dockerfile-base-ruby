@@ -15,6 +15,6 @@ install: true
 
 before_script:
   - docker info
-  - docker login -e="${DOCKER_EMAIL}" -u="${DOCKER_USERNAME}" -p="${DOCKER_PASSWORD}" quay.io
+  - docker login -u="${DOCKER_USERNAME}" -p="${DOCKER_PASSWORD}" quay.io
 
 script: ./build_and_push

@@ -9,6 +9,6 @@ fi
 
 tag="quay.io/goodguide/ruby:ubuntu-15.10-${tag_ruby_id}-${TRAVIS_BUILD_NUMBER}"
 
-echo docker build --tag "${tag}" --build-arg RUBY_VERSION="${RUBY_VERSION}" .
+docker build --tag "${tag}" --build-arg RUBY_VERSION="${RUBY_VERSION}" .
 
-echo docker push "${tag}"
+docker push "${tag}"
