@@ -21,4 +21,4 @@ before_script:
   - docker info
   - docker login -u="${DOCKER_USERNAME}" -p="${DOCKER_PASSWORD}" quay.io
 
-script: PUSH=1 ./build_and_push
+script: ./build_and_push

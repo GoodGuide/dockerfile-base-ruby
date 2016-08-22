@@ -7,8 +7,12 @@ if [[ $tag_ruby_id =~ ^[0-9] ]]; then
    tag_ruby_id="mri-${tag_ruby_id}"
 fi
 
-tag="quay.io/goodguide/ruby:${BASE}-${tag_ruby_id}-${TRAVIS_BUILD_NUMBER}"
+tag="quay.io/goodguide/ruby:${BASE}-${tag_ruby_id}"
 
 docker build --file "${BASE}/${DOCKERFILE:-Dockerfile}" --tag "${tag}" --build-arg RUBY_VERSION="${RUBY_VERSION}" ./${BASE}/
 
-[[ ${PUSH:-} ]] && docker push "${tag}"
+if [[ ${TRAVIS_BUILD_NUMBER:-} ]]; then
+  docker push "${tag}"
+  docker tag "${tag}" "${tag}-${TRAVIS_BUILD_NUMBER}"
+  docker push "${tag}-${TRAVIS_BUILD_NUMBER}"
+fi
