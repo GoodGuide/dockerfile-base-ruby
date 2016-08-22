@@ -18,7 +18,7 @@ RUN apt-get update \
       zlib1g-dev
 
 ARG RUBY_VERSION
-ENV RUBY_VERSION=$RUBY_VERSION RUBY_PREFIX=/usr/local
+ENV RUBY_PREFIX=/usr/local
 
 # Disable default RDoc/ri generation when installing gems
 RUN set -x \
