@@ -10,4 +10,4 @@ env:
 
 install: true
 
-script: docker build -t quay.io/goodguide/ruby:ubuntu-15.10-${RUBY_VERSION}-0 --arg RUBY_VERSION="${RUBY_VERSION}" .
+script: docker build --tag "quay.io/goodguide/ruby:ubuntu-15.10-${RUBY_VERSION}-${TRAVIS_BUILD_NUMBER}" --build-arg RUBY_VERSION="${RUBY_VERSION}" .
