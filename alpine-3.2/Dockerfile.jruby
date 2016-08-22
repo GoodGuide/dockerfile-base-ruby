@@ -43,9 +43,14 @@ RUN set -x \
       /var/cache/apk/* \
       /opt/ruby-build \
 
- # update rubygems
- && gem update --system \
-
  # don't let rubygems build rdoc docs for gems automatically
  && mkdir -p /usr/local/etc \
  && echo 'gem: --no-rdoc --no-ri' >> /usr/local/etc/gemrc
+
+# update rubygems
+RUN gem update --system
+
+# for dependant images, again update rubygems and bundler upon building
+# off this image to ensure everything's up-to-date
+ONBUILD RUN gem update --system
+ONBUILD RUN gem install bundler

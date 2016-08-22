@@ -30,10 +30,10 @@ RUN set -x \
 # Install ruby via ruby-build
  && /tmp/ruby-build/bin/ruby-build -v "$RUBY_VERSION" "$RUBY_PREFIX" \
 
- && rm -rf /tmp/ruby-build \
+ && rm -rf /tmp/ruby-build
 
- # update rubygems
- && gem update --system
+# update rubygems
+RUN gem update --system
 
 # for dependant images, again update rubygems and bundler upon building
 # off this image to ensure everything's up-to-date
