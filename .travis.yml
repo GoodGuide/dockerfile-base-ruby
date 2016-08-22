@@ -8,10 +8,12 @@ services:
 language: c
 
 env:
-  - RUBY_VERSION=jruby-1.7.22 DOCKERFILE=Dockerfile.jruby TAG_BASE=alpine-3.2
-  - RUBY_VERSION=jruby-1.7.24 DOCKERFILE=Dockerfile.jruby TAG_BASE=alpine-3.2
-  - RUBY_VERSION=jruby-1.7.25 DOCKERFILE=Dockerfile.jruby TAG_BASE=alpine-3.2
-  - RUBY_VERSION=jruby-9.1.2.0 DOCKERFILE=Dockerfile.jruby TAG_BASE=alpine-3.2
+  - DIRECTORY=alpine-3.2 RUBY_VERSION=jruby-1.7.22 DOCKERFILE=Dockerfile.jruby
+  - DIRECTORY=alpine-3.2 RUBY_VERSION=jruby-1.7.24 DOCKERFILE=Dockerfile.jruby
+  - DIRECTORY=alpine-3.2 RUBY_VERSION=jruby-1.7.25 DOCKERFILE=Dockerfile.jruby
+  - DIRECTORY=alpine-3.2 RUBY_VERSION=jruby-9.1.2.0 DOCKERFILE=Dockerfile.jruby
+  - DIRECTORY=ubuntu-15.10 RUBY_VERSION=2.3.1 DOCKERFILE=Dockerfile
+  - DIRECTORY=ubuntu-15.10 RUBY_VERSION=2.2.5 DOCKERFILE=Dockerfile
 
 install: true
 
