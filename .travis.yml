@@ -1,9 +1,13 @@
 ---
+sudo: required
+
+services:
+  - docker
+
 env:
   - RUBY_VERSION=2.2.5
   - RUBY_VERSION=2.3.1
 
-test:
-  - docker build -t ubuntu-15.10-${RUBY_VERSION}-0
+install: true
 
-language: none
+script: docker build -t quay.io/goodguide/ruby:ubuntu-15.10-${RUBY_VERSION}-0 --arg RUBY_VERSION="${RUBY_VERSION}" .
