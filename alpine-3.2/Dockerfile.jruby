@@ -6,6 +6,9 @@ ENV RUBY_VERSION="$RUBY_VERSION" \
     RUBY_PREFIX='/usr/local' \
     RUBY_BUILD_RELEASE='master'
 
+# add some settings to make the build work (faster/at all) on some build environments
+ENV JRUBY_OPTS '--dev -J-Djava.security.egd=/dev/urandom'
+
 RUN set -x \
  && apk --update add \
      bash \
