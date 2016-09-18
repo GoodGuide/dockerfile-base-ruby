@@ -1,4 +1,4 @@
-FROM quay.io/goodguide/base:ubuntu-15.10-4
+FROM quay.io/goodguide/base:ubuntu-16.04-1
 
 RUN apt-get update \
  && apt-get install \
@@ -21,8 +21,7 @@ ARG RUBY_VERSION
 ENV RUBY_VERSION="$RUBY_VERSION" RUBY_PREFIX=/usr/local
 
 # Disable default RDoc/ri generation when installing gems
-RUN set -x \
- && echo 'gem: --no-rdoc --no-ri' >> /usr/local/etc/gemrc \
+RUN echo 'gem: --no-rdoc --no-ri' >> /usr/local/etc/gemrc \
 
 # Use ruby-build to install Ruby
  && git clone https://github.com/sstephenson/ruby-build.git /tmp/ruby-build \
@@ -30,12 +29,17 @@ RUN set -x \
 # Install ruby via ruby-build
  && /tmp/ruby-build/bin/ruby-build -v "$RUBY_VERSION" "$RUBY_PREFIX" \
 
- && rm -rf /tmp/ruby-build
+ && rm -rf /tmp/ruby-build \
 
 # update rubygems
-RUN gem update --system
+ && gem update --system
+
+CMD ["irb"]
 
 # for dependant images, again update rubygems and bundler upon building
 # off this image to ensure everything's up-to-date
 ONBUILD RUN gem update --system
 ONBUILD RUN gem install bundler
+
+ARG git_revision
+LABEL com.goodguide.base-image.base.git-revision="$git_revision"

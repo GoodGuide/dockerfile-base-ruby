@@ -9,7 +9,18 @@ fi
 
 tag="quay.io/goodguide/ruby:${BASE}-${tag_ruby_id}"
 
-docker build --file "${BASE}/${DOCKERFILE:-Dockerfile}" --tag "${tag}" --build-arg RUBY_VERSION="${RUBY_VERSION}" ./${BASE}/
+git_revision="$(git rev-parse HEAD)"
+
+if ! git diff --quiet; then
+		git_revision="${git_revision}-dirty"
+fi
+
+docker build \
+			 --file "${BASE}/${DOCKERFILE:-Dockerfile}" \
+			 --tag "${tag}" \
+			 --build-arg git_revision="${git_revision}" \
+			 --build-arg RUBY_VERSION="${RUBY_VERSION}" \
+			 ./${BASE}/
 
 if [[ ${TRAVIS_BUILD_NUMBER:-} ]]; then
   docker push "${tag}"
