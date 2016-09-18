@@ -36,8 +36,7 @@ RUN echo 'gem: --no-rdoc --no-ri' >> /usr/local/etc/gemrc \
 
 CMD ["irb"]
 
-# for dependant images, again update rubygems and bundler upon building
-# off this image to ensure everything's up-to-date
+# for dependant images, again update rubygems and bundler upon building off this image to ensure everything's up-to-date
 ONBUILD RUN gem update --system
 ONBUILD RUN gem install bundler
 
