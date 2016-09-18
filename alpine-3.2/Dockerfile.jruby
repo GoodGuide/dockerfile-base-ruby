@@ -1,7 +1,6 @@
 FROM quay.io/goodguide/oracle-java:alpine-3.2-java-8.72.15-0
 
 ARG RUBY_VERSION
-
 ENV RUBY_VERSION="$RUBY_VERSION" \
     RUBY_PREFIX='/usr/local' \
     RUBY_BUILD_RELEASE='master'
@@ -48,12 +47,18 @@ RUN set -x \
 
  # don't let rubygems build rdoc docs for gems automatically
  && mkdir -p /usr/local/etc \
- && echo 'gem: --no-rdoc --no-ri' >> /usr/local/etc/gemrc
+ && echo 'gem: --no-rdoc --no-ri' >> /usr/local/etc/gemrc \
 
-# update rubygems
-RUN gem update --system
+ # update rubygems
+ && gem update --system
+
+CMD ["irb"]
 
 # for dependant images, again update rubygems and bundler upon building
 # off this image to ensure everything's up-to-date
 ONBUILD RUN gem update --system
 ONBUILD RUN gem install bundler
+
+
+ARG git_revision
+LABEL com.goodguide.base-image.base.git-revision="$git_revision"
