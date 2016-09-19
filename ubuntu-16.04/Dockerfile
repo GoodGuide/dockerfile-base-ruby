@@ -41,4 +41,4 @@ ONBUILD RUN gem update --system
 ONBUILD RUN gem install bundler
 
 ARG git_revision
-LABEL com.goodguide.base-image.base.git-revision="$git_revision"
+LABEL com.goodguide.base-image.ruby.git-revision="$git_revision"
