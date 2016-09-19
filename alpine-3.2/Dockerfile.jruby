@@ -50,13 +50,11 @@ RUN set -x \
  && echo 'gem: --no-rdoc --no-ri' >> /usr/local/etc/gemrc \
 
  # update rubygems
- && gem update --system
+ && gem update --system \
+ && gem install bundler
 
 CMD ["irb"]
 
-# for dependant images, again update rubygems and bundler upon building off this image to ensure everything's up-to-date
-ONBUILD RUN gem update --system
-ONBUILD RUN gem install bundler
-
-ARG git_revision
-LABEL com.goodguide.base-image.ruby.git-revision="$git_revision"
+# for dependant images, again update rubygems then install bundler upon building off this image to ensure everything's up-to-date
+ONBUILD RUN gem update --system \
+ && gem install bundler

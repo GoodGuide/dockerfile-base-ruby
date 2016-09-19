@@ -1,4 +1,4 @@
-FROM quay.io/goodguide/base:ubuntu-16.04-1
+FROM quay.io/goodguide/base:ubuntu-16.04-3
 
 RUN apt-get update \
  && apt-get install \
@@ -31,14 +31,12 @@ RUN echo 'gem: --no-rdoc --no-ri' >> /usr/local/etc/gemrc \
 
  && rm -rf /tmp/ruby-build \
 
-# update rubygems
- && gem update --system
+ # update rubygems
+ && gem update --system \
+ && gem install bundler
 
 CMD ["irb"]
 
-# for dependant images, again update rubygems and bundler upon building off this image to ensure everything's up-to-date
-ONBUILD RUN gem update --system
-ONBUILD RUN gem install bundler
-
-ARG git_revision
-LABEL com.goodguide.base-image.ruby.git-revision="$git_revision"
+# for dependant images, again update rubygems then install bundler upon building off this image to ensure everything's up-to-date
+ONBUILD RUN gem update --system \
+ && gem install bundler

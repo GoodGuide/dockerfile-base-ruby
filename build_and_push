@@ -18,8 +18,8 @@ fi
 docker build \
 			 --file "${BASE}/${DOCKERFILE:-Dockerfile}" \
 			 --tag "${tag}" \
-			 --build-arg git_revision="${git_revision}" \
 			 --build-arg RUBY_VERSION="${RUBY_VERSION}" \
+			 --label "com.goodguide.base-image.ruby.git-revision=$git_revision" \
 			 ./${BASE}/
 
 if [[ ${TRAVIS_BUILD_NUMBER:-} ]]; then
