@@ -16,6 +16,7 @@ if ! git diff --quiet; then
 fi
 
 docker build \
+			 --pull \
 			 --file "${BASE}/${DOCKERFILE:-Dockerfile}" \
 			 --tag "${tag}" \
 			 --build-arg RUBY_VERSION="${RUBY_VERSION}" \
