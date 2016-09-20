@@ -1,15 +1,13 @@
-FROM quay.io/goodguide/oracle-java:alpine-3.2-java-8.72.15-0
+FROM quay.io/goodguide/oracle-java:alpine-3.4-java8
 
 ARG RUBY_VERSION
+
 ENV RUBY_VERSION="$RUBY_VERSION" \
     RUBY_PREFIX='/usr/local' \
     RUBY_BUILD_RELEASE='master'
 
-# add some settings to make the build work (faster/at all) on some build environments
-ENV JRUBY_OPTS '--dev -J-Djava.security.egd=/dev/urandom'
-
-RUN set -x \
- && apk --update add \
+RUN JRUBY_OPTS='--dev -J-Djava.security.egd=/dev/urandom' \
+ && apk --virtual=.build-dependencies --update add \
      bash \
      ca-certificates \
      curl \
@@ -17,8 +15,8 @@ RUN set -x \
      make \
      tar \
 
-     # n.b. libstdc++ is a runtime dep; don't del later
-     libstdc++ \
+ # n.b. libstdc++ is a runtime dep; don't del later
+ && apk add libstdc++ \
 
  # download ruby-build
  && mkdir -p /opt/ruby-build \
@@ -28,13 +26,7 @@ RUN set -x \
  # Install ruby via ruby-build
  && /opt/ruby-build/bin/ruby-build --verbose "$RUBY_VERSION" "$RUBY_PREFIX" \
 
- && apk del \
-      bash \
-      ca-certificates \
-      curl \
-      g++ \
-      make \
-      tar \
+ && apk del .build-dependencies
 
  # Set up JRuby options in the .jrubyrc
  && jruby --properties | sed "/compat.version/ c\compat.version=2.0" > /root/.jrubyrc \

@@ -1,4 +1,4 @@
-FROM quay.io/goodguide/base:ubuntu-16.04-3
+FROM quay.io/goodguide/base:ubuntu-16.04
 
 RUN apt-get update \
  && apt-get install \
