@@ -26,7 +26,7 @@ RUN JRUBY_OPTS='--dev -J-Djava.security.egd=/dev/urandom' \
  # Install ruby via ruby-build
  && /opt/ruby-build/bin/ruby-build --verbose "$RUBY_VERSION" "$RUBY_PREFIX" \
 
- && apk del .build-dependencies
+ && apk del .build-dependencies \
 
  # Set up JRuby options in the .jrubyrc
  && jruby --properties | sed "/compat.version/ c\compat.version=2.0" > /root/.jrubyrc \
