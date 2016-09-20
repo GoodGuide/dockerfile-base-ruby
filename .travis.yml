@@ -8,7 +8,8 @@ services:
 language: c
 
 env:
-  - BASE=alpine RUBY_VERSION=jruby-1.7.25 DOCKERFILE=Dockerfile.jruby
+  - BASE=alpine RUBY_VERSION=jruby-1.7.26 DOCKERFILE=Dockerfile.jruby
+  - BASE=alpine RUBY_VERSION=jruby-9.1.5.0 DOCKERFILE=Dockerfile.jruby
   - BASE=ubuntu RUBY_VERSION=2.3.1
   - BASE=ubuntu RUBY_VERSION=2.2.5
 
