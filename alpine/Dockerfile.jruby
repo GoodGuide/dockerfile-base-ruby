@@ -6,7 +6,7 @@ ENV RUBY_VERSION="$RUBY_VERSION" \
     RUBY_PREFIX='/usr/local' \
     RUBY_BUILD_RELEASE='master'
 
-RUN JRUBY_OPTS='--dev -J-Djava.security.egd=/dev/urandom' \
+RUN export JRUBY_OPTS='--dev -J-Djava.security.egd=/dev/urandom' \
  && apk --virtual=.build-dependencies --update add \
      bash \
      ca-certificates \
