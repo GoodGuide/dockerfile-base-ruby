@@ -6,6 +6,7 @@ RUN apt-get update \
       bison \
       byacc \
       build-essential \
+      cron \
       git \
       libffi-dev \
       libgdbm-dev \
