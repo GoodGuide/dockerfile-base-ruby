@@ -1,4 +1,4 @@
-FROM quay.io/goodguide/base:ubuntu-15.10-4
+FROM quay.io/goodguide/base:ubuntu-16.10-11
 
 RUN apt-get update \
  && apt-get install \
@@ -6,6 +6,7 @@ RUN apt-get update \
       bison \
       byacc \
       build-essential \
+      cron \
       git \
       libffi-dev \
       libgdbm-dev \
