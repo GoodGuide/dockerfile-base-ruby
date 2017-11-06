@@ -39,4 +39,4 @@ RUN set -x \
 # for dependant images, again update rubygems and bundler upon building
 # off this image to ensure everything's up-to-date
 ONBUILD RUN gem update --system
-ONBUILD RUN gem install bundler
+ONBUILD RUN gem install bundle
