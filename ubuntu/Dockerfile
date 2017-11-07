@@ -40,5 +40,8 @@ CMD ["irb"]
 
 # for dependant images, again update rubygems then install bundler upon building off this image to ensure everything's up-to-date
 ONBUILD RUN gem update --system \
- && rm -r /usr/local/bin/bundle \ # temporary removal of the conflicting files
+
+# temporary removal of the conflicting files
+ && rm -r /usr/local/bin/bundle \
+ 
  && gem install bundler
